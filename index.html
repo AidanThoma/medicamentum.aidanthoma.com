@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f2">
+  <meta name="description" content="Medicamentum Solutions creates thoughtful medical technology that helps care teams stay connected.">
+  <title>Medicamentum Solutions | Care, connected.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17312d;
+      --muted: #60716a;
+      --paper: #f6f7f2;
+      --white: #fff;
+      --green: #236d5c;
+      --mint: #dceee4;
+      --lime: #d5f06a;
+      --orange: #e7835e;
+      --line: #dce3dc;
+      --display: "Manrope", "Trebuchet MS", sans-serif;
+      --body: "DM Sans", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .wrap { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+
+    .topbar { height: 82px; display: flex; align-items: center; border-bottom: 1px solid rgba(23,49,45,.09); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font: 800 16px var(--display); letter-spacing: 0; white-space: nowrap; }
+    .brand-mark { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 11px; background: var(--green); color: var(--lime); font: 700 25px/1 var(--body); }
+    .brand small { display: block; color: var(--muted); font: 600 9px var(--body); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; color: #465e56; font-size: 13px; font-weight: 600; }
+    .nav-links a:hover, .footer-links a:hover { color: var(--green); }
+    .nav-cta, .button { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 19px; border: 0; border-radius: 5px; background: var(--green); color: white; font-weight: 700; font-size: 13px; cursor: pointer; transition: background .2s, transform .2s; }
+    .nav-cta:hover, .button:hover { background: #184f43; transform: translateY(-1px); }
+    .menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 5px; color: var(--ink); background: transparent; cursor: pointer; }
+
+    .hero { position: relative; overflow: hidden; padding: 66px 0 52px; background: radial-gradient(ellipse at 7% 10%, #e6f0e4 0, transparent 34%), var(--paper); }
+    .hero-grid { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: 66px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 23px; height: 2px; background: var(--orange); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 530px; margin: 19px 0 19px; font: 700 clamp(46px, 5.2vw, 70px)/1.04 var(--display); letter-spacing: 0; }
+    h1 span { color: var(--green); }
+    .hero-copy { max-width: 460px; color: var(--muted); font-size: 16px; line-height: 1.75; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 29px; }
+    .text-link { display: inline-flex; gap: 8px; align-items: center; color: var(--ink); font-size: 13px; font-weight: 700; }
+    .text-link span { color: var(--green); font-size: 18px; transition: transform .2s; }
+    .text-link:hover span { transform: translateX(4px); }
+    .hero-visual { position: relative; min-height: 440px; }
+    .hero-photo { position: absolute; inset: 0 0 28px 34px; overflow: hidden; border-radius: 8px; background: #c5d9cd; }
+    .hero-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 52% center; }
+    .photo-wash { position: absolute; inset: 0; background: linear-gradient(130deg, rgba(24,79,67,.16), transparent 62%); }
+    .signal-card { position: absolute; left: 0; bottom: 0; width: 242px; padding: 18px 19px 16px; border: 1px solid rgba(23,49,45,.08); border-radius: 6px; background: white; box-shadow: 0 12px 35px rgba(23,49,45,.12); }
+    .signal-head { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .7px; text-transform: uppercase; }
+    .live { display: flex; align-items: center; gap: 5px; color: var(--green); letter-spacing: 0; }
+    .live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #64b982; }
+    .signal-number { margin: 11px 0 2px; font: 700 31px var(--display); }
+    .signal-number small { color: var(--muted); font: 500 12px var(--body); }
+    .chart { height: 30px; margin-top: 12px; background: linear-gradient(180deg, rgba(35,109,92,.16), transparent); clip-path: polygon(0 70%, 10% 55%, 20% 68%, 30% 26%, 40% 52%, 51% 42%, 60% 64%, 69% 20%, 78% 43%, 88% 36%, 100% 8%, 100% 100%, 0 100%); border-top: 2px solid var(--green); }
+    .hero-stamp { position: absolute; top: 18px; right: -19px; width: 91px; height: 91px; display: grid; place-items: center; border-radius: 50%; background: var(--lime); color: var(--ink); text-align: center; font: 800 11px/1.35 var(--display); transform: rotate(9deg); }
+
+    .trust-strip { padding: 23px 0; background: var(--ink); color: #e3eee6; }
+    .trust-inner { display: flex; justify-content: space-between; align-items: center; gap: 22px; }
+    .trust-label { color: #b9cac1; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+    .trust-item { display: flex; align-items: center; gap: 9px; font: 700 13px var(--display); }
+    .trust-item b { color: var(--lime); font-size: 17px; }
+
+    section { scroll-margin-top: 26px; }
+    .section { padding: 102px 0; }
+    .section-heading { max-width: 670px; margin-bottom: 43px; }
+    .section-heading h2 { margin: 14px 0 13px; font: 700 clamp(32px, 4vw, 48px)/1.14 var(--display); letter-spacing: 0; }
+    .section-heading p { max-width: 570px; margin-bottom: 0; color: var(--muted); line-height: 1.75; font-size: 15px; }
+    .solutions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .solution { min-height: 230px; padding: 24px 24px 23px; border-top: 2px solid var(--green); background: #fff; }
+    .solution:nth-child(2) { border-color: var(--orange); }
+    .solution:nth-child(3) { border-color: #a6bd4b; }
+    .solution-icon { width: 40px; height: 40px; display: grid; place-items: center; margin-bottom: 26px; border-radius: 12px; background: var(--mint); color: var(--green); font: 800 17px var(--display); }
+    .solution:nth-child(2) .solution-icon { background: #fae8df; color: #b55637; }
+    .solution:nth-child(3) .solution-icon { background: #edf2d6; color: #657d25; }
+    .solution h3 { margin-bottom: 9px; font: 700 18px var(--display); }
+    .solution p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+
+    .product-band { padding: 76px 0; background: #e7efe7; }
+    .product-grid { display: grid; grid-template-columns: 1fr .92fr; gap: 80px; align-items: center; }
+    .product-copy h2 { margin: 14px 0; max-width: 480px; font: 700 clamp(32px, 4vw, 46px)/1.14 var(--display); }
+    .product-copy p { max-width: 490px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .check-list { display: grid; gap: 14px; margin: 23px 0 27px; padding: 0; list-style: none; color: #38564b; font-size: 13px; font-weight: 600; }
+    .check-list li { display: flex; gap: 10px; align-items: center; }
+    .check-list li::before { content: "+"; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; background: var(--lime); color: var(--ink); font-weight: 700; }
+    .dashboard { overflow: hidden; border: 1px solid #d3dfd5; border-radius: 7px; background: white; box-shadow: 0 20px 50px rgba(23,49,45,.10); }
+    .dash-top { display: flex; justify-content: space-between; align-items: center; padding: 15px 18px; border-bottom: 1px solid #edf0eb; font-size: 11px; font-weight: 700; }
+    .dash-top span:last-child { color: var(--green); }
+    .dash-content { padding: 18px; }
+    .dash-title { margin-bottom: 14px; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .8px; }
+    .patient-row { display: grid; grid-template-columns: 1fr auto auto; gap: 16px; align-items: center; padding: 13px 0; border-top: 1px solid #edf0eb; font-size: 12px; }
+    .patient { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .avatar { width: 31px; height: 31px; display: grid; place-items: center; border-radius: 50%; background: #dceee4; color: var(--green); font-size: 10px; }
+    .vital { color: var(--muted); font-size: 11px; }
+    .status { padding: 5px 8px; border-radius: 3px; background: #e8f3e9; color: #30734f; font-size: 10px; font-weight: 700; }
+    .status.review { background: #fbefe4; color: #9a6031; }
+    .dash-note { margin-top: 10px; padding: 10px; background: #f3f7f2; color: var(--muted); font-size: 10px; line-height: 1.5; }
+
+    .about { padding: 96px 0 100px; }
+    .about-top { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 37px; }
+    .about-top .section-heading { margin: 0; }
+    .about-note { max-width: 270px; margin-bottom: 5px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .owners { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+    .owner { padding: 24px 18px 0 0; }
+    .owner + .owner { padding-left: 20px; border-left: 1px solid var(--line); }
+    .owner-index { color: var(--orange); font-size: 11px; font-weight: 700; letter-spacing: 1px; }
+    .owner h3 { margin: 11px 0 5px; font: 700 20px var(--display); }
+    .owner p { margin: 0; color: var(--muted); font-size: 12px; }
+
+    .contact { padding: 0 0 82px; }
+    .contact-panel { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 35px; padding: 38px 42px; border-radius: 7px; background: var(--green); color: white; }
+    .contact-panel .eyebrow { color: var(--lime); }
+    .contact-panel h2 { margin: 12px 0 8px; font: 700 31px/1.2 var(--display); }
+    .contact-panel p { max-width: 470px; margin: 0; color: #d3e2da; font-size: 13px; line-height: 1.65; }
+    .button-light { background: var(--lime); color: var(--ink); white-space: nowrap; }
+    .button-light:hover { background: #e2f890; }
+    .footer { padding: 24px 0 29px; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .footer .brand { font-size: 13px; }
+    .footer .brand-mark { width: 30px; height: 30px; font-size: 20px; }
+    .footer-links { display: flex; gap: 22px; color: var(--muted); font-size: 11px; font-weight: 600; }
+    .copyright { color: #76867e; font-size: 10px; }
+    .toast { position: fixed; right: 22px; bottom: 22px; z-index: 5; max-width: min(370px, calc(100% - 44px)); padding: 16px 19px; border-radius: 5px; background: var(--ink); color: white; box-shadow: 0 8px 28px rgba(0,0,0,.18); font-size: 13px; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .2s, transform .2s; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .reveal { animation: enter .7s both; }
+    @keyframes enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 850px) {
+      .hero-grid { gap: 32px; grid-template-columns: .95fr 1.05fr; }
+      .hero-visual { min-height: 380px; }
+      .nav-links { gap: 19px; }
+      .trust-inner { flex-wrap: wrap; justify-content: center; }
+      .trust-label { flex-basis: 100%; text-align: center; }
+      .product-grid { gap: 38px; }
+    }
+    @media (max-width: 650px) {
+      .wrap { width: min(100% - 36px, 500px); }
+      .topbar { height: 70px; }
+      .menu-toggle { display: grid; place-items: center; font-size: 20px; }
+      .nav-cta { display: none; }
+      .nav-links { position: absolute; top: 69px; left: 0; right: 0; z-index: 4; display: none; padding: 12px 22px 18px; border-bottom: 1px solid var(--line); background: var(--paper); }
+      .nav-links.open { display: grid; gap: 0; }
+      .nav-links a { padding: 12px 0; }
+      .hero { padding: 47px 0 36px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      h1 { font-size: 49px; }
+      .hero-copy { font-size: 14px; }
+      .hero-visual { min-height: 320px; }
+      .hero-photo { inset: 0 0 22px 20px; }
+      .hero-stamp { right: -8px; width: 74px; height: 74px; font-size: 9px; }
+      .signal-card { width: 208px; padding: 14px; }
+      .trust-strip { padding: 19px 0; }
+      .trust-inner { gap: 15px 21px; }
+      .trust-item { font-size: 11px; }
+      .section { padding: 71px 0; }
+      .solutions { grid-template-columns: 1fr; gap: 11px; }
+      .solution { min-height: auto; padding: 20px; }
+      .solution-icon { margin-bottom: 15px; }
+      .product-band { padding: 64px 0; }
+      .product-grid { grid-template-columns: 1fr; gap: 32px; }
+      .about { padding: 72px 0; }
+      .about-top { display: block; }
+      .about-note { margin-top: 19px; }
+      .owners { grid-template-columns: 1fr; }
+      .owner, .owner + .owner { padding: 18px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+      .owner:first-child { padding-top: 20px; }
+      .contact { padding-bottom: 60px; }
+      .contact-panel { grid-template-columns: 1fr; padding: 29px 24px; gap: 22px; }
+      .contact-panel h2 { font-size: 27px; }
+      .contact-panel .button { justify-self: start; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-links { flex-wrap: wrap; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Medicamentum Solutions home">
+        <span class="brand-mark" aria-hidden="true">+</span>
+        <span>Medicamentum<small>Solutions</small></span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#solutions">Solutions</a>
+        <a href="#platform">Our platform</a>
+        <a href="#about">About us</a>
+      </div>
+      <a class="nav-cta" href="#contact">Talk with our team <span aria-hidden="true">&rarr;</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-grid wrap">
+        <div class="reveal">
+          <div class="eyebrow">A clearer view of care</div>
+          <h1>Care,<br><span>connected.</span></h1>
+          <p class="hero-copy">Medical technology designed to bring patient signals and care teams closer together. Less searching for answers. More room to focus on people.</p>
+          <div class="hero-actions">
+            <a class="button" href="#platform">Meet the platform <span aria-hidden="true">&rarr;</span></a>
+            <a class="text-link" href="#solutions">Explore solutions <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
+        <div class="hero-visual reveal" aria-label="Care team collaborating around a digital health record">
+          <div class="hero-photo">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Healthcare professionals reviewing patient information together" fetchpriority="high">
+            <div class="photo-wash"></div>
+          </div>
+          <div class="signal-card" aria-label="Example connected care signal dashboard">
+            <div class="signal-head"><span>Care overview</span><span class="live">Connected</span></div>
+            <div class="signal-number">24 <small>active check-ins</small></div>
+            <div class="chart" aria-hidden="true"></div>
+          </div>
+          <div class="hero-stamp">DESIGNED<br>AROUND<br>PEOPLE</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip" aria-label="Our approach">
+      <div class="trust-inner wrap">
+        <span class="trust-label">Based in Los Angeles, California</span>
+        <span class="trust-item"><b>+</b> Around 5,000 employees</span>
+        <span class="trust-item"><b>+</b> Human-centered design</span>
+        <span class="trust-item"><b>+</b> Connected insights</span>
+      </div>
+    </div>
+
+    <section class="section" id="solutions">
+      <div class="wrap">
+        <div class="section-heading">
+          <div class="eyebrow">Built for better coordination</div>
+          <h2>Make the moving parts feel more connected.</h2>
+          <p>Care is a team effort. Our concept solutions help make the information, tools, and everyday work around care easier to bring together.</p>
+        </div>
+        <div class="solutions">
+          <article class="solution">
+            <div class="solution-icon" aria-hidden="true">01</div>
+            <h3>Connected monitoring</h3>
+            <p>Bring routine readings and check-ins into a shared view for care teams to review.</p>
+          </article>
+          <article class="solution">
+            <div class="solution-icon" aria-hidden="true">02</div>
+            <h3>Clearer care workflows</h3>
+            <p>Keep key updates and follow-up tasks organized, so teams can spend less time switching tools.</p>
+          </article>
+          <article class="solution">
+            <div class="solution-icon" aria-hidden="true">03</div>
+            <h3>Patient-first experiences</h3>
+            <p>Make it easier for people to stay involved with simple, accessible digital touchpoints.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-band" id="platform">
+      <div class="product-grid wrap">
+        <div class="product-copy">
+          <div class="eyebrow">Meet PulseBridge</div>
+          <h2>A shared picture, at the right moment.</h2>
+          <p>PulseBridge is our fictional connected-care platform concept: a clear workspace for care teams to view check-ins, coordinate next steps, and keep patient context in one place.</p>
+          <ul class="check-list">
+            <li>One calm view for everyday care coordination</li>
+            <li>Designed to fit alongside existing routines</li>
+            <li>Built with privacy and clarity in mind</li>
+          </ul>
+          <a class="text-link" href="#contact">See what we're imagining <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <div class="dashboard" role="img" aria-label="Illustrative PulseBridge dashboard showing example care check-ins">
+          <div class="dash-top"><span>PulseBridge <span style="color:#84958c;font-weight:500">/ Team view</span></span><span>Today &nbsp; &#8964;</span></div>
+          <div class="dash-content">
+            <div class="dash-title">Example check-ins</div>
+            <div class="patient-row"><span class="patient"><span class="avatar">JM</span>Jordan M.</span><span class="vital">Updated 9:41</span><span class="status">On track</span></div>
+            <div class="patient-row"><span class="patient"><span class="avatar" style="background:#f8e8df;color:#a9563b">AL</span>Alex L.</span><span class="vital">Updated 9:28</span><span class="status review">Review</span></div>
+            <div class="patient-row"><span class="patient"><span class="avatar" style="background:#edf1d7;color:#687c2d">SK</span>Sam K.</span><span class="vital">Updated 9:12</span><span class="status">On track</span></div>
+            <div class="dash-note">Illustrative interface only. Example names and activity are fictional.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="wrap">
+        <div class="about-top">
+          <div class="section-heading">
+            <div class="eyebrow">The people behind the idea</div>
+            <h2>A 5,000-person team, focused on care.</h2>
+          </div>
+          <p class="about-note">Medicamentum Solutions is a student-created, fictional medical technology company headquartered in Los Angeles, California, with around 5,000 employees and a focus on making connected care feel more human.</p>
+        </div>
+        <div class="owners">
+          <article class="owner"><span class="owner-index">01 / CO-OWNER</span><h3>Aidan Thoma</h3><p>Product &amp; strategy</p></article>
+          <article class="owner"><span class="owner-index">02 / CO-OWNER</span><h3>Drake Dombrowsky</h3><p>Technology &amp; systems</p></article>
+          <article class="owner"><span class="owner-index">03 / CO-OWNER</span><h3>Gabe Oldham</h3><p>Experience &amp; partnerships</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-panel wrap">
+        <div>
+          <div class="eyebrow">Start a conversation</div>
+          <h2>Let's imagine what's next.</h2>
+          <p>Interested in our class project or the ideas behind PulseBridge? Send our team a note and we'll be in touch.</p>
+        </div>
+        <form id="contact-form">
+          <label for="email" class="visually-hidden">Your email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="Your email address" required style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">
+          <button class="button button-light" type="submit">Request a conversation <span aria-hidden="true">&rarr;</span></button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner wrap">
+      <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">+</span><span>Medicamentum<small>Solutions</small></span></a>
+      <div class="footer-links"><a href="#solutions">Solutions</a><a href="#platform">PulseBridge</a><a href="#about">Our team</a></div>
+      <span class="copyright">Los Angeles, California &middot; A fictional class project. &copy; 2026 Medicamentum Solutions.</span>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite">Thanks for your interest. This is a class project, so no message was sent.</div>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('#nav-links');
+    menuButton.addEventListener('click', () => {
+      const isOpen = navigation.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+    });
+    navigation.addEventListener('click', (event) => {
+      if (event.target.closest('a')) {
+        navigation.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open navigation');
+      }
+    });
+    document.querySelector('#contact-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      document.querySelector('#toast').classList.add('show');
+      event.currentTarget.reset();
+      window.setTimeout(() => document.querySelector('#toast').classList.remove('show'), 4200);
+    });
+  </script>
+</body>
+</html>
